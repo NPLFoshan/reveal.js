@@ -328,7 +328,9 @@
 	function initialize( options ) {
 
 		// Make sure we only initialize once
-		if( initialized === true ) return;
+		if( initialized === true ) {
+			return;
+		}
 
 		initialized = true;
 
@@ -380,6 +382,12 @@
 		// Loads the dependencies and continues to #start() once done
 		load();
 
+	}
+
+	function updateDom(options) {
+		dom.wrapper = (options.dom && options.dom.wrapper) && options.dom.wrapper || document.querySelector( '.reveal' );
+		dom.slides = (options.dom && options.dom.slides) && options.dom.slides || document.querySelector( '.reveal .slides' );
+		sync()
 	}
 
 	/**
@@ -5372,6 +5380,7 @@
 		VERSION: VERSION,
 
 		initialize: initialize,
+		updateDom: updateDom,
 		configure: configure,
 
 		sync: sync,
